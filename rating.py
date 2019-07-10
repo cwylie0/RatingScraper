@@ -133,19 +133,22 @@ def googlify():
     
         # get the rating
         rating = str(soup) #convert the bs4 to string
+        # print(soup.encode("utf-8"))
        
         #since google changes div names, it takes two slices to get to the rating 
-        firstSlice = rating[(rating.find('reviews</span>')-105) : (rating.find('reviews</span>')-105) + 10]
-        rate = firstSlice[(firstSlice.find('.')-1) : (firstSlice.find('.')-1) + 3]
+        firstSlice = rating[(rating.find('class="oqSTJd">')+15) : (rating.find('class="oqSTJd">')+15) + 3]        
+        #rate = firstSlice[(firstSlice.find('.')-1) : (firstSlice.find('.')-1) + 3]
 
         #since google changes div names, it takes two slices to get to the rating 
-        secondSlice = rating[(rating.find('reviews</span>')-4) : (rating.find('reviews</span>')-4) + 3]    
+        secondSlice = rating[(rating.find('role="img"><span style="width:63px"></span></div> <span>(')+57) : (rating.find('role="img"><span style="width:63px"></span></div> <span>(')+57) + 3]    
+        #print(secondSlice)
+        secondSlice = secondSlice.replace(")", "")
         secondSlice = secondSlice.replace(" ", "")
 
-        print(key + ", " + rate + ", " + secondSlice)
+        print(key + ", " + firstSlice + ", " + secondSlice)
         #time.sleep(1) #add a pause to not get blocked  
     
-        a[c].append(rate)
+        a[c].append(firstSlice)
         a[c].append(secondSlice)
         c = c + 1
 
@@ -162,7 +165,7 @@ def fbify():
     
         # get the rating
         rating = str(soup) #convert the bs4 to string
-                
+               
         rate = rating[(rating.find('lightweight_score_explainer')) - 51 : (rating.find('lightweight_score_explainer')) - 48]
         rate = rate.replace(" ", "")
         rate = re.sub('[^0-9.]','', rate)
@@ -206,3 +209,4 @@ def scrape():
     fbify()
     # printTable(a)   
     outputCSV(a)
+
