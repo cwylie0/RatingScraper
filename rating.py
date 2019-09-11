@@ -15,7 +15,6 @@ yelpURLs = {
 "East Orlando": "https://www.yelp.com/biz/ifixyouri-iphone-ipad-and-ipod-repair-orlando-6",
 "Downtown Orlando": "https://www.yelp.com/biz/i-fix-your-i-orlando-9",
 "Longwood": "https://www.yelp.com/biz/ifixyouri-iphone-ipad-and-ipod-repair-longwood",
-"Millenia": "https://www.yelp.com/biz/ifixyouri-iphone-ipad-and-ipod-repair-orlando-14",
 "Oviedo": "https://www.yelp.com/biz/ifixyouri-iphone-ipad-and-ipod-repair-oviedo",
 "Winter Park": "https://www.yelp.com/biz/ifixyouri-iphone-ipad-and-ipod-repair-winter-park",
 
@@ -37,7 +36,6 @@ googURLs = {
 "East Orlando": "https://www.google.com/search?q=iFixYouri+Alafaya",
 "Downtown Orlando": "https://www.google.com/search?q=iFixYouri+Colonial+Dr",
 "Longwood": "https://www.google.com/search?q=iFixYouri+Longwood",
-"Millenia": "https://www.google.com/search?q=iFixYouri+Millenia",
 "Oviedo": "https://www.google.com/search?q=iFixYouri+Oviedo",
 "Winter Park": "https://www.google.com/search?q=iFixYouri+Winter+Park",
 
@@ -59,7 +57,6 @@ fbURLs = {
 "East Orlando": "https://www.facebook.com/ifixyouriorlando/reviews/",
 "Downtown Orlando": "https://www.facebook.com/Ifixyouri.Downtown.Orlando/reviews/",
 "Longwood": "https://www.facebook.com/ifixyouri.longwood/reviews/",
-"Millenia": "https://www.facebook.com/ifixyouri.millenia.orlando/reviews/",
 "Oviedo": "https://www.facebook.com/ifixyouri.oviedo/reviews/",
 "Winter Park": "https://www.facebook.com/iFixYouri.WinterPark/reviews/",
 
