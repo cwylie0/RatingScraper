@@ -81,7 +81,7 @@ filepath = os.path.join(here, subdir, filename)
 
 def printOutputInfo():
     print ("")
-    print ("*** RATINGS SCRAPER V 2.1 ***")    
+    print ("*** RATINGS SCRAPER V 2.3 ***")    
     print ("")
     print("Ratings report being generated and will output to: ")
     print(filename)    
@@ -102,8 +102,10 @@ def yelpify():
         soup = BeautifulSoup(page, 'html.parser')
     
         # get the rating
-        rating_box = soup.find('div', attrs={'class':'i-stars'})    
-        rating = str(rating_box) #convert the bs4 to class str  
+        # rating_box = soup.find('div', attrs={'class':'i-stars'})    
+        rating = str(soup) #convert the bs4 to class str  
+        rating = rating[(rating.find('"@type": "AggregateRating", "ratingValue":')+ 43) : (rating.find('"@type": "AggregateRating", "ratingValue":')+ 43) + 3]
+
 
         review_count_box = soup.find('span', attrs={'itemprop':'reviewCount'})    
         review_count = str(review_count_box) #convert the bs4 to class str   
@@ -112,8 +114,8 @@ def yelpify():
         reviewCount = reviewCount.replace("<", "")
         reviewCount = reviewCount.replace("/", "")
 
-        print(key + ", " + rating[(rating.find('title')+7) : (rating.find('title')+7) + 3] + ", " + reviewCount)
-        b=[key, rating[(rating.find('title')+7) : (rating.find('title')+7) + 3], reviewCount]
+        print(key + ", " + rating + ", " + reviewCount)
+        b=[key, rating, reviewCount]
     
         a.append(b)
 
@@ -130,19 +132,25 @@ def googlify():
     
         # get the rating
         rating = str(soup) #convert the bs4 to string
-        # print(soup.encode("utf-8"))
-       
+        
+        #print(soup.encode("utf-8"))
+        
         #since google changes div names, it takes two slices to get to the rating 
-        firstSlice = rating[(rating.find('class="oqSTJd">')+15) : (rating.find('class="oqSTJd">')+15) + 3]        
+        firstSlice = rating[(rating.find('class="oqSTJd">')+15) : (rating.find('class="oqSTJd">')+15) + 3]             
         #rate = firstSlice[(firstSlice.find('.')-1) : (firstSlice.find('.')-1) + 3]
 
         #since google changes div names, it takes two slices to get to the rating 
-        secondSlice = rating[(rating.find('role="img"><span style="width:63px"></span></div> <span>(')+57) : (rating.find('role="img"><span style="width:63px"></span></div> <span>(')+57) + 3]    
-        #print(secondSlice)
+        secondSlice = rating[(rating.find('role="img"><span style="width:63px"></span></div> <span>(')+57) : (rating.find('role="img"><span style="width:63px"></span></div> <span>(')+57) + 3]          
+              
+        
+        if secondSlice == "set" or key == "Winter Park":
+            print("FLAG")
+            secondSlice = rating[(rating.find('out of 5" class=')+88) : (rating.find('out of 5" class=')+88) + 3]
+
         secondSlice = secondSlice.replace(")", "")
         secondSlice = secondSlice.replace(" ", "")
 
-        print(key + ", " + firstSlice + ", " + secondSlice)
+        print(key + ", " + firstSlice + ", " + secondSlice)        
         #time.sleep(1) #add a pause to not get blocked  
     
         a[c].append(firstSlice)
